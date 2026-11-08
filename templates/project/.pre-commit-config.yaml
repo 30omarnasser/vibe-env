@@ -1,5 +1,5 @@
 repos:
   - repo: https://github.com/stbenjam/skillsaw
-    rev: main
+    rev: b11cf99c18ee5b1b2cb3156094b1a7d39fa0f1c7  # frozen: v0.23.0
     hooks:
       - id: skillsaw
