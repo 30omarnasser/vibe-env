@@ -1,0 +1,16 @@
+{
+  "_comment": "Merge into ~/.claude/settings.json. context-monitor and agent-starter add their own hooks on install; this adds the lint gate on agent-config edits.",
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "f=$(jq -r '.tool_input.file_path // empty'); case \"$f\" in *CLAUDE.md|*AGENTS.md|*SKILL.md|*.mcp.json|*settings.json) skillsaw lint \"$f\" 2>&1 | tail -20 ;; esac"
+          }
+        ]
+      }
+    ]
+  }
+}

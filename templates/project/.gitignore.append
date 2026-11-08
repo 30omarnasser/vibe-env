@@ -1,0 +1,4 @@
+# vibe-env — append to the project .gitignore
+.serena/cache/
+.ralph/logs/
+.harness-audit/tmp/

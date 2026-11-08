@@ -1,0 +1,25 @@
+{
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "if [ -f package.json ]; then npm test --silent 2>&1 | tail -15; elif [ -f pyproject.toml ]; then uv run pytest -q 2>&1 | tail -15; fi"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "f=$(jq -r '.tool_input.file_path // empty'); case \"$f\" in *.ts|*.tsx) npx -y eslint --no-warn-ignored \"$f\" 2>&1 | tail -10 ;; *.py) uv run ruff check \"$f\" 2>&1 | tail -10 ;; esac"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "_comment": "Reference only. install.sh registers these with `claude mcp add -s user ...`. Never load more than two code-intelligence servers per project.",
+  "mcpServers": {
+    "serena": { "command": "serena", "args": ["start-mcp-server", "--context", "ide-assistant"] },
+    "codebase-memory": { "command": "codebase-memory-mcp", "args": [] },
+    "fetch": { "command": "uvx", "args": ["mcp-server-fetch"] },
+    "sequential-thinking": { "command": "npx", "args": ["-y", "@modelcontextprotocol/server-sequential-thinking"] }
+  }
+}
